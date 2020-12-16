@@ -1,0 +1,38 @@
+{
+  "name": "poker-core",
+  "version": "1.0.0",
+  "description": "A headless no-limit Texas Hold'em engine for SmartHoldem Card Engine.",
+  "main": "./build/index.js",
+  "scripts": {
+    "version": "node ./generate-readme.js && git add ./README.md",
+    "postversion": "npm publish && git push",
+    "install": "npm run build",
+    "clean": "rimraf ./build",
+    "build": "npm run clean &&tsc --project ./tsconfig.json"
+  },
+  "keywords": [
+    "smartholdem",
+    "poker",
+    "texas holdem",
+    "hold'em",
+    "sth",
+    "crypto"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technologiespro/poker-core.git"
+  },
+  "author": {
+    "name": "TechnoL0g",
+    "email": "technolog@smartholdem.io",
+    "url": "https://smartholdem.io"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "pokersolver": "^2.1.4",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  }
+}
