@@ -1,7 +1,7 @@
 {
   "name": "poker-core",
   "version": "1.0.0",
-  "description": "A headless no-limit Texas Hold'em engine for SmartHoldem Card Engine.",
+  "description": "A headless no-limit Texas Hold'em engine for SmartHoldem Card Engine",
   "main": "./build/index.js",
   "scripts": {
     "version": "node ./generate-readme.js && git add ./README.md",
