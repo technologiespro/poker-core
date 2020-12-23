@@ -30,6 +30,7 @@
   "license": "MIT",
   "dependencies": {
     "crypto-js": "^4.0.0",
+    "crypto-random": "^1.0.3",
     "pokersolver": "^2.1.4",
     "rimraf": "^3.0.2"
   },

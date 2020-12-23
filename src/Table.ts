@@ -1,6 +1,7 @@
 import { Hand } from "pokersolver";
 import { Card, CardSuit, CardRank, Player } from ".";
 import sha256 from "crypto-js/sha256";
+import CryptoRandom from "crypto-random";
 
 export class Table {
   public autoMoveDealer: boolean = true;
@@ -525,7 +526,8 @@ export class Table {
       });
     });
     for (let index = newDeck.length - 1; index > 0; index--) {
-      const rndIndex = Math.floor(Math.random() * (index + 1));
+      //const rndIndex = Math.floor(Math.random() * (index + 1));
+      const rndIndex = Math.floor(CryptoRandom.value() * (index + 1));
       [newDeck[index], newDeck[rndIndex]] = [newDeck[rndIndex], newDeck[index]];
     }
     return newDeck;
