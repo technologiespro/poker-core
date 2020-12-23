@@ -49,7 +49,7 @@ export class Table {
     if (this.currentPosition === undefined) return;
     return this.players[this.currentPosition];
   }
-  
+
   get currentPot () {
     // If there is no pot, create one.
     if (this.pots.length === 0) {
@@ -197,7 +197,7 @@ export class Table {
     bustedPlayers.forEach(player => player && this.standUp(player));
 
     // Reset player bets, hole cards, and fold status.
-    this.players.forEach(player => { 
+    this.players.forEach(player => {
       if (!player) return;
       player.bet = 0;
       delete player.raise;
@@ -276,6 +276,7 @@ export class Table {
 
     // Generate newly shuffled deck.
     this.deck = this.newDeck();
+    let result = this.deck;
 
     // Deal cards to players.
     this.players.forEach(player => {
@@ -285,6 +286,7 @@ export class Table {
         this.deck.pop()!
       ];
     });
+    return result;
   }
 
   nextAction () {
@@ -471,7 +473,7 @@ export class Table {
         break;
     }
   }
-  
+
   showdown () {
     delete this.currentRound;
     delete this.currentPosition;
@@ -499,7 +501,7 @@ export class Table {
 
     // Distribute pots and mark winners.
     this.pots.forEach(pot => {
-      pot.winners = findWinners(pot.eligiblePlayers); 
+      pot.winners = findWinners(pot.eligiblePlayers);
       const award = pot.amount / pot.winners!.length;
       pot.winners!.forEach(player => player.stackSize += award);
     });
