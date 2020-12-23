@@ -1,6 +1,6 @@
 {
   "name": "@smartholdem/poker-core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A headless no-limit Texas Hold'em engine for SmartHoldem Card Engine",
   "main": "./build/index.js",
   "scripts": {
@@ -29,6 +29,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "crypto-js": "^4.0.0",
     "pokersolver": "^2.1.4",
     "rimraf": "^3.0.2"
   },

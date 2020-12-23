@@ -1,5 +1,6 @@
 import { Hand } from "pokersolver";
 import { Card, CardSuit, CardRank, Player } from ".";
+import sha256 from "crypto-js/sha256";
 
 export class Table {
   public autoMoveDealer: boolean = true;
@@ -275,8 +276,14 @@ export class Table {
     this.lastPosition = this.bigBlindPosition!;
 
     // Generate newly shuffled deck.
-    this.deck = this.newDeck();
-    let result = this.deck;
+    const deck = this.newDeck();
+    this.deck = deck;
+
+    let deckArr = [];
+    for (let i = 0; i < deck.length; i++) {
+      deckArr.push(deck[i].rank + deck[i].suit);
+    }
+    const deckStr = deckArr.join('');
 
     // Deal cards to players.
     this.players.forEach(player => {
@@ -286,7 +293,10 @@ export class Table {
         this.deck.pop()!
       ];
     });
-    return result;
+    return {
+      deck: deckStr,
+      hash: sha256(deckStr).toString(),
+    };
   }
 
   nextAction () {
