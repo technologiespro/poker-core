@@ -1,6 +1,6 @@
 import { Hand } from "pokersolver";
 import { Card, CardSuit, CardRank, Player } from ".";
-import sha256 from "crypto-js/sha256";
+import CryptoJs from "crypto-js";
 import CryptoRandom from "crypto-random";
 
 export class Table {
@@ -289,7 +289,7 @@ export class Table {
       deckArr.push(deck[i].rank + deck[i].suit);
     }
     const deckStr = deckArr.join('');
-    this.deckHash = sha256(deckStr).toString();
+    this.deckHash = CryptoJs.ripemd160(deckStr).toString();
     this.deck = deck;
 
     // Deal cards to players.
