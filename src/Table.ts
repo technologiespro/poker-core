@@ -127,12 +127,6 @@ export class Table {
 
   sitDown(id: string, buyIn: number, seatNumber?: number) {
     // If there are no null seats then the table is full.
-    /*
-    if (this.players.length > this.maxPlayers) {
-      this.players.splice(this.maxPlayers, this.players.length - this.maxPlayers)
-    }
-     */
-
     if (this.players.filter(player => player === null).length === 0) {
       throw new Error("The table is currently full.");
     }
