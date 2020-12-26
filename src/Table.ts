@@ -16,7 +16,7 @@ export class Table {
   public handNumber: number = 0;
   public lastPosition?: number;
   public lastRaise?: number;
-  public players: (Player|null)[] = [null, null, null, null, null, null, null, null, null];
+  public players: (Player|null)[] = [];
   public pots: Pot[] = [];
   public smallBlindPosition?: number;
   public winners?: Player[];
@@ -27,6 +27,10 @@ export class Table {
     public bigBlind: number = 10,
     public maxPlayers: number = 9,
   ) {
+    for (let i=0; i < this.maxPlayers; i++) {
+      this.players.push(null)
+    }
+
     if (smallBlind >= bigBlind) {
       throw new Error("The small blind must be less than the big blind.");
     }
@@ -123,6 +127,12 @@ export class Table {
 
   sitDown(id: string, buyIn: number, seatNumber?: number) {
     // If there are no null seats then the table is full.
+    /*
+    if (this.players.length > this.maxPlayers) {
+      this.players.splice(this.maxPlayers, this.players.length - this.maxPlayers)
+    }
+     */
+
     if (this.players.filter(player => player === null).length === 0) {
       throw new Error("The table is currently full.");
     }
