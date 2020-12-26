@@ -16,7 +16,7 @@ export class Table {
   public handNumber: number = 0;
   public lastPosition?: number;
   public lastRaise?: number;
-  public players: (Player|null)[] = [null, null, null, null, null, null, null, null, null, null];
+  public players: (Player|null)[] = [null, null, null, null, null, null, null, null, null];
   public pots: Pot[] = [];
   public smallBlindPosition?: number;
   public winners?: Player[];
@@ -24,7 +24,8 @@ export class Table {
   constructor (
     public buyIn: number = 1000,
     public smallBlind: number = 5,
-    public bigBlind: number = 10
+    public bigBlind: number = 10,
+    public maxPlayers: number = 9,
   ) {
     if (smallBlind >= bigBlind) {
       throw new Error("The small blind must be less than the big blind.");
@@ -178,7 +179,7 @@ export class Table {
         if (playerIndex === this.dealerPosition) {
           if (this.players.filter(player => player !== null).length === 0) {
             delete this.dealerPosition;
-            delete this.smallBlindPosition
+            delete this.smallBlindPosition;
             delete this.bigBlindPosition;
           } else {
             this.moveDealer(this.dealerPosition + 1);
