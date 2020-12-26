@@ -13,6 +13,7 @@ export class Table {
   public dealerPosition?: number;
   public debug: boolean = false;
   public deck: Card[] = [];
+  public deckHash: string = '';
   public handNumber: number = 0;
   public lastPosition?: number;
   public lastRaise?: number;
@@ -283,13 +284,13 @@ export class Table {
 
     // Generate newly shuffled deck.
     const deck = this.newDeck();
-    this.deck = deck;
-
     let deckArr = [];
     for (let i = 0; i < deck.length; i++) {
       deckArr.push(deck[i].rank + deck[i].suit);
     }
     const deckStr = deckArr.join('');
+    this.deckHash = sha256(deckStr).toString();
+    this.deck = deck;
 
     // Deal cards to players.
     this.players.forEach(player => {
@@ -299,10 +300,7 @@ export class Table {
         this.deck.pop()!
       ];
     });
-    return {
-      deck: deckStr,
-      hash: sha256(deckStr).toString(),
-    };
+    return deckStr;
   }
 
   nextAction () {
