@@ -69,7 +69,7 @@ export enum CardRank {
 }
 
 export interface Card {
-  color: CardColor
+  colors: CardColor
   suit: CardSuit
   value: CardRank
 }
